@@ -15,6 +15,7 @@ Public Area.
 <p> <a href="/protected">Attempt to access</a> a protected resource</p>
 <p> <a href="/protected/twitter">Attempt to access</a> a Twitter protected resource</p>
 <p> <a href="/protected/facebook">Attempt to access</a> a Facebook protected resource</p>
+<p> <a href="/protected/slack">Attempt to access</a> a Slack protected resource</p>
 <p> <a href="/protected/facebookTwitter">Attempt to access</a> a Facebook and Twitter protected resource</p>
 
 </c:when>
@@ -38,6 +39,9 @@ Public Area.
                       <authz:authorize access="hasRole('ROLE_USER_FACEBOOK')">
 						<p>You are connected with Facebook. </p>
                     </authz:authorize>
+                     <authz:authorize access="hasRole('ROLE_USER_SLACK')">
+						<p>You are connected with Slack. </p>
+                    </authz:authorize>
 
            
                     <authz:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_USER_FACEBOOK')">
@@ -45,6 +49,9 @@ Public Area.
                     </authz:authorize>
                     <authz:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_USER_TWITTER')">
 						<p><a href="/oauthconnect.jsp">Connect</a> your account with Twitter</p>
+                    </authz:authorize>
+                     <authz:authorize access="hasRole('ROLE_USER') and !hasRole('ROLE_USER_SLACK')">
+						<p><a href="/oauthconnect.jsp">Connect</a> your account with Slack</p>
                     </authz:authorize>
                        
                  

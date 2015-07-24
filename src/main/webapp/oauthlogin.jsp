@@ -20,6 +20,10 @@
 	<p><input type="submit" value="Login with Facebook" /></p>
 </form> 
 
+ <form class="login"action="http://localhost:8080/signin/slack" method="POST">
+	<p><input type="submit" value="Login with Slack" /></p>
+</form> 
+
 </authz:authorize>
 
  <authz:authorize access="hasRole('ROLE_USER')">

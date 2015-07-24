@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:security="http://www.springframework.org/schema/security"
 
@@ -28,14 +27,15 @@
 
 	<!-- Scan classpath for components, including our Social Security Configuration 
 		class -->
-		
-	<context:component-scan base-package="org.socialsignin.springsocial.security.config.social" >
+
+	<context:component-scan
+		base-package="org.socialsignin.springsocial.security.config.social">
 	</context:component-scan>
-	
-	<context:component-scan base-package="org.socialsignin.springsocial.security" >
+
+	<context:component-scan base-package="org.socialsignin.springsocial.security">
 	</context:component-scan>
-	
-	
+
+
 	<context:component-scan base-package="org.socialsignin.provider" />
 
 
@@ -44,7 +44,7 @@
 	<!-- Start Spring Security -->
 
 	<security:global-method-security
-		proxy-target-class="false" >
+		proxy-target-class="false">
 	</security:global-method-security>
 
 
@@ -66,17 +66,19 @@
 		entry-point-ref="springSocialSecurityEntryPoint" xmlns="http://www.springframework.org/schema/security">
 
 		<intercept-url pattern="/protected/twitter" access="hasRole('ROLE_USER_TWITTER')" />
+		<intercept-url pattern="/protected/slack" access="hasRole('ROLE_USER_SLACK')" />
 		<intercept-url pattern="/protected/facebook" access="hasRole('ROLE_USER_FACEBOOK')" />
-		<intercept-url pattern="/protected/facebookTwitter" access="hasRole('ROLE_USER_FACEBOOK') and hasRole('ROLE_USER_TWITTER')" />
+		<intercept-url pattern="/protected/facebookTwitter"
+			access="hasRole('ROLE_USER_FACEBOOK') and hasRole('ROLE_USER_TWITTER')" />
 		<intercept-url pattern="/protected/**" access="hasRole('ROLE_USER')" />
-		
+
 		<intercept-url pattern="/oauthconnect.jsp" access="hasRole('ROLE_USER')" />
 
-        <access-denied-handler ref="springSocialSecurityAccessDeniedHandler"/>
+		<access-denied-handler ref="springSocialSecurityAccessDeniedHandler" />
 
 
 		<security:logout logout-url="/logout" />
-		
+
 		<anonymous />
 		<security:custom-filter position="FORM_LOGIN_FILTER"
 			ref="springSocialSecurityAuthenticationFilter" />
@@ -86,12 +88,12 @@
 
 	</security:http>
 
-	
+
 	<bean id="springSocialSecurityEntryPoint"
-  		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
- 		<property name="loginFormUrl" value="/oauthlogin.jsp"/>
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<property name="loginFormUrl" value="/oauthlogin.jsp" />
 	</bean>
-	
+
 
 	<bean id="springSocialSecurityRememberMeServices"
 		class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
@@ -113,11 +115,14 @@
 
 
 	<!-- Start Spring Social -->
-	
- 	<!-- Transaction manager for a single JDBC DataSource -->
 
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource"><ref bean="dataSource"/></property>
+	<!-- Transaction manager for a single JDBC DataSource -->
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
 	</bean>
 
 
@@ -135,7 +140,7 @@
 		</property>
 	</bean>
 
-	<!--  
+
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName">
@@ -154,7 +159,7 @@
 			<value>true</value>
 		</property>
 	</bean>
-	-->
+	
 	<bean id="textEncryptor" class="org.springframework.security.crypto.encrypt.Encryptors"
 		factory-method="noOpText" />
 

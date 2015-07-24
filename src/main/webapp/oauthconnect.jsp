@@ -23,6 +23,13 @@
 </form> 
 </authz:authorize>
 
+<authz:authorize access="!hasRole('ROLE_USER_SLACK')">
+
+  <form class="login"action="http://localhost:8080/connect/slack" method="POST">
+	<p><input type="submit" value="Connect with Slack" /></p>
+</form> 
+</authz:authorize>
+
 </body>
 </html>
 

@@ -23,6 +23,7 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.social.security.AuthenticationNameUserIdSource;
+import org.springframework.social.slack.connect.SlackConnectionFactory;
 import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -65,6 +66,10 @@ public class SocialConfig implements SocialConfigurer {
 	        cfConfig.addConnectionFactory(new FacebookConnectionFactory(
 	                env.getProperty("facebook.clientId"),
 	                env.getProperty("facebook.clientSecret")
+	        ));
+	        cfConfig.addConnectionFactory(new SlackConnectionFactory(
+	                env.getProperty("slack.clientId"),
+	                env.getProperty("slack.clientSecret")
 	        ));
 	        cfConfig.addConnectionFactory(new SpringSocialSecurityConnectionFactory());
 	}
