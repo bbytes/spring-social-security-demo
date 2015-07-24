@@ -1,3 +1,30 @@
+Spring Social Security Demo with http://slack.com oauth use case
+================================================================
+
+Maven project setup: 
+
+Add to pom.xml
+
+```
+
+		<repository>
+			<id>spring-social-slack-bbytes</id>
+			<url>https://raw.github.com/bbytes/spring-social-slack/mvn-repo/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+```
+
+```
+		<dependency>
+			<groupId>org.springframework.social</groupId>
+			<artifactId>spring-social-slack</artifactId>
+			<version>${org.springframework.social.slack.version}</version>
+		</dependency>
+```
+
 Spring Social Security Demo
 ===========================
 
